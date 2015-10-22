@@ -9,6 +9,9 @@ class PhotosController < ApplicationController
 
   def destroy
     photo = Photo.find(params[:id])
+    photo.comments.each do |comment|
+      comment.destroy
+    end
     photo.destroy
     redirect_to home_index_path
   end

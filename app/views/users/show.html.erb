@@ -1,18 +1,44 @@
 <% if current_user.admin %>
   <h1>Admin Privileges</h1>
 
+  <%= link_to "Add New Photo", new_photo_path %>
+
+  <h3>Users</h3>
+
   <% @users.each do |user| %>
-  <ul>
-    <li>
-      <%= user.user_name %>
-      <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, user_path(user), data: {method: "delete", confirm: "Are you sure?"} %>
-      <% if user.admin %>
-        <%= link_to "Remove Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
-      <% else %>
-        <%= link_to "Make Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
-      <% end %>
-    </li>
-  </ul>
+    <ul>
+      <li>
+        <%= user.user_name %>
+        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, user_path(user), data: {method: "delete", confirm: "Are you sure?"} %>
+        <% if user.admin %>
+          <%= link_to "Remove Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
+        <% else %>
+          <%= link_to "Make Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+
+  <h3>Photos</h3>
+
+  <% @photos.each do |photo| %>
+    <ul>
+      <li>
+        <%= image_tag photo.file.url(:thumb) %>
+        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, photo_path(photo), data: {method: "delete", confirm: "Are you sure?"} %>
+      </li>
+    </ul>
+  <% end %>
+
+  <h3>Comments</h3>
+
+  <% @comments.each do |comment| %>
+    <ul>
+      <li>
+        <%= comment.content %>
+        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, photo_comment_path(comment.photo, comment), data: {method: "delete", confirm: "Are you sure?"} %>
+      </li>
+    </ul>
   <% end %>
 
 <% else %>
