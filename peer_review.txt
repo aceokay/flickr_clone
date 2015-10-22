@@ -1,0 +1,11 @@
+Peer Reviewed by Alyssa Horrocks and Alexa Zeazas
+
+1. Documentation : Readme and commits look great!
+2. Spec coverage : They all pass, great! 84% coverage, fantastic!
+3. See above.
+4. Application logic : There's no error message when you try to add a photo with no file. It says successful and takes to a photo page :( The application automatically makes me the admin when I sign up? Logout redirects to homepage which is the page with a user's pictures, may need to untangle some routes.
+5. No...
+6. User friendly : Having to navigate to the 'Copr' to see a homepage of all photos is a little confusing.
+7. Features Good : You got tags working! Awesome! The profile page is cool!
+8. Features to Improve : Logout, maybe have a specific page to show individual picture so you can get comments working someday!
+9. Feedback : GREAT JOB!!!!
