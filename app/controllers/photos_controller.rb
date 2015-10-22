@@ -19,6 +19,11 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo[:user_id] = current_user.id
+    params[:photo][:tag_ids].each do |tag_id|
+      if tag_id != ""
+        @photo.tags.push(Tag.find(tag_id))
+      end
+    end
     if @photo.save
       flash[:succes] = "Successfully added!"
       redirect_to home_index_path

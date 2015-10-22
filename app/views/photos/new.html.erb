@@ -3,5 +3,10 @@
 <%= form_for @photo, url: photos_path, html: { multipart: true } do |f| %>
   <%= f.file_field :file %>
   <br>
+  <%= f.label :tag_ids, "Tags" %>
+  <br>
+  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <br>
+  <br>
   <%= f.submit %>
 <% end %>

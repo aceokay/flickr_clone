@@ -1,6 +1,8 @@
 <% if current_user.admin %>
   <h1>Admin Privileges</h1>
 
+  <%= link_to "Add New Tag", new_tag_path %>
+  <br>
   <%= link_to "Add New Photo", new_photo_path %>
 
   <h3>Users</h3>
@@ -15,6 +17,17 @@
         <% else %>
           <%= link_to "Make Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
         <% end %>
+      </li>
+    </ul>
+  <% end %>
+
+  <h3>Tags</h3>
+
+  <% @tags.each do |tag| %>
+    <ul>
+      <li>
+        <%= tag.name %>
+        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, tag_path(tag), data: {method: "delete", confirm: "Are you sure?"} %>
       </li>
     </ul>
   <% end %>

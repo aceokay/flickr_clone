@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @users = User.all
     @photos = Photo.all
     @comments = Comment.all
+    @tags = Tag.all
   end
 
   def destroy
