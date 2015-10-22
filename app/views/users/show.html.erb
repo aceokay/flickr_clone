@@ -1,9 +1,28 @@
-<% if user_signed_in? %>
-  <%= link_to "Add New Photo", new_photo_path %>
+<% if current_user.admin %>
+  <h1>Admin Privileges</h1>
 
-  <h3>Here are your photos</h3>
+  <% @users.each do |user| %>
+  <ul>
+    <li>
+      <%= user.user_name %>
+      <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, user_path(user), data: {method: "delete", confirm: "Are you sure?"} %>
+      <% if user.admin %>
+        <%= link_to "Remove Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
+      <% else %>
+        <%= link_to "Make Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
+      <% end %>
+    </li>
+  </ul>
+  <% end %>
 
-  <% current_user.photos.each do |photo| %>
-    <%= link_to "#{image_tag(photo.file.url(:thumb))}".html_safe, photo_path(photo) %> <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, photo_path(photo), data: {method: "delete", confirm: "Are you sure?"} %>
+<% else %>
+  <% if user_signed_in? %>
+    <%= link_to "Add New Photo", new_photo_path %>
+
+    <h3>Here are your photos</h3>
+
+    <% current_user.photos.each do |photo| %>
+      <%= link_to "#{image_tag(photo.file.url(:thumb))}".html_safe, photo_path(photo) %> <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, photo_path(photo), data: {method: "delete", confirm: "Are you sure?"} %>
+    <% end %>
   <% end %>
 <% end %>
