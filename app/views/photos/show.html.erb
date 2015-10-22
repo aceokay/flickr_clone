@@ -1,0 +1,12 @@
+<h1>CHECK OUT DIS PHOTO</h1>
+
+<%= image_tag "#{@photo.file.url(:large)}" %>
+<br>
+<br>
+<%= link_to "Add Comment", new_photo_comment_path(@photo), class: "btn btn-primary" %>
+
+<% @photo.comments.each do |comment| %>
+  <h3><%= comment.content %></h3>
+  <p><%= comment.user.user_name %></p>
+  <p><%= comment.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
+<% end %>

@@ -3,6 +3,16 @@ class PhotosController < ApplicationController
     @photo = Photo.new
   end
 
+  def show
+    @photo = Photo.find(params[:id])
+  end
+
+  def destroy
+    photo = Photo.find(params[:id])
+    photo.destroy
+    redirect_to home_index_path
+  end
+
   def create
     @photo = Photo.new(photo_params)
     @photo[:user_id] = current_user.id

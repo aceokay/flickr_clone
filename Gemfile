@@ -25,6 +25,7 @@ group :test, :development do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'simplecov', require: false
+  gem 'better_errors'
   # gem "letter_opener"
 end
 

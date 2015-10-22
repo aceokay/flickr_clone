@@ -1,9 +1,7 @@
-<% if user_signed_in? %>
-  <%= link_to "Add New Photo", new_photo_path %>
+<h1>Welcome to Flickr Flopper Fotos</h1>
 
-  <h3>Here are your photos</h3>
-
-  <% current_user.photos.each do |photo| %>
-    <%= image_tag photo.file.url %>
-  <% end %>
+<% @photos.each do |photo| %>
+  <%= link_to "#{image_tag(photo.file.url(:large))}".html_safe, photo_path(photo) %>
+  <br>
+  <p>Posted by: <%= photo.user.user_name %></p>
 <% end %>
