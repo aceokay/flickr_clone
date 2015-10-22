@@ -1,8 +1,11 @@
 FactoryGirl.define do
   factory :user do
     user_name "Cheese"
-    email "cheese@cheese.com"
+    sequence :email do |n|
+      (n + rand(100000)).to_s + "@examplecheese.com"
+    end
     password "cheesecheese"
+    admin true
   end
 
   factory :no_admin_user, class: User do
