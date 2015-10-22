@@ -11,7 +11,7 @@
     <ul>
       <li>
         <%= user.user_name %>
-        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, user_path(user), data: {method: "delete", confirm: "Are you sure?"} %>
+        <%= link_to "<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>".html_safe, user_path(user), data: {method: "delete", confirm: "Are you sure?"}, id: 'user-delete' %>
         <% if user.admin %>
           <%= link_to "Remove Admin", user_path(user), data: {confirm: "Are you sure?", method: "patch"} %>
         <% else %>

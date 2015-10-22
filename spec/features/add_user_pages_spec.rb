@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe "User sign-up and login path" do
-  user = FactoryGirl.create(:user)
   it "adds a user and logs them in" do
     visit '/'
     click_on "Sign up"
@@ -14,6 +13,7 @@ describe "User sign-up and login path" do
   end
 
   it "it allows a user to signin and view their profile page" do
+    user = FactoryGirl.create(:user)
     visit '/'
     click_on "Login"
     fill_in 'Email', :with => user.email
