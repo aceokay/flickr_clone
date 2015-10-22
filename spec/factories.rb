@@ -14,4 +14,8 @@ FactoryGirl.define do
     password "testtest"
     admin false
   end
+
+  factory :tag do
+    name "cheeses"
+  end
 end
